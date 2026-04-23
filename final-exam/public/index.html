@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Registry</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <div class="container header-grid">
+            <section>
+                <h1 class="site-title">
+                    <a href="/" class="site-title-link">ClientCore</a>
+                </h1>
+                <p class="site-tagline">A minimal customer registry system.</p>
+            </section>
+            <aside class="author-card">
+                <p><strong>Author:</strong> <span id="author-name">Maryna Yehereva</span></p>
+                <p><strong>Group ID:</strong> <span id="group-id">IT00AK35-3005</span></p>
+            </aside>
+        </div>
+    </header>
+
+    <main>
+        <div class="container layout">
+
+            <!-- System Overview -->
+            <section class="hero-card" aria-labelledby="overview-heading">
+                <div class="section-title-row">
+                    <span class="section-icon">🗂️</span>
+                    <h2 id="overview-heading" class="section-heading">System Overview</h2>
+                </div>
+                <p>
+                    This customer management interface allows users to add new customers to the registry,
+                    update existing customer information, and remove customer records when needed.
+                </p>
+                <p>
+                    The <strong>Customer Management</strong> area is reserved for create, update, and delete
+                    actions, while the <strong>Customer Records</strong> area displays all customer data
+                    currently stored in the registry.
+                </p>
+            </section>
+
+            <div class="content-grid">
+
+                <!-- Customer Management -->
+                <section class="panel" aria-labelledby="customer-management-heading">
+                    <div class="section-title-row">
+                        <span class="section-icon">✏️</span>
+                        <h2 id="customer-management-heading" class="section-heading">
+                            <span id="form-title">Add Customer</span>
+                        </h2>
+                    </div>
+                    <p class="panel-description">
+                        Use this area to add new customers, edit existing customer information, and delete records.
+                    </p>
+
+                    <div id="customer-form">
+                        <div id="form-status"></div>
+
+                        <div class="form-group">
+                            <label for="first_name"><span class="field-icon">👤</span> First Name <span class="required">*</span></label>
+                            <input
+                                type="text"
+                                id="first_name"
+                                placeholder="First name"
+                                pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s\-']+"
+                                title="Letters only (no numbers)"
+                                autocomplete="off"
+                            />
+                            <span class="field-error" id="err-first_name"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name"><span class="field-icon">👤</span> Last Name <span class="required">*</span></label>
+                            <input
+                                type="text"
+                                id="last_name"
+                                placeholder="Last name"
+                                pattern="[A-Za-zÀ-ÖØ-öø-ÿ\s\-']+"
+                                title="Letters only (no numbers)"
+                                autocomplete="off"
+                            />
+                            <span class="field-error" id="err-last_name"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email"><span class="field-icon">✉️</span> Email <span class="required">*</span></label>
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="email@example.com"
+                                autocomplete="off"
+                            />
+                            <span class="field-error" id="err-email"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone"><span class="field-icon">📞</span> Phone</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                placeholder="e.g. 0401234567"
+                                pattern="[0-9+\s\-()]+"
+                                title="Numbers only"
+                                autocomplete="off"
+                            />
+                            <span class="field-error" id="err-phone"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="birth_date"><span class="field-icon">🎂</span> Birth Date</label>
+                            <input type="date" id="birth_date" />
+                        </div>
+
+                        <div class="form-actions">
+                            <button id="btn-add" onclick="addCustomer()">➕ Add Customer</button>
+                            <button id="btn-update" onclick="updateCustomer()" class="btn-secondary hidden">💾 Update</button>
+                            <button id="btn-delete" onclick="deleteCustomer()" class="btn-danger hidden">🗑️ Delete</button>
+                            <button id="btn-clear" onclick="clearForm()" class="btn-muted hidden">✖ Clear</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Customer Records -->
+                <section class="panel" aria-labelledby="customer-records-heading">
+                    <div class="section-title-row">
+                        <span class="section-icon">👥</span>
+                        <h2 id="customer-records-heading" class="section-heading">
+                            Customer Records
+                            <span id="customer-count" class="count-badge">0</span>
+                        </h2>
+                    </div>
+                    <p class="panel-description">
+                        This area displays all customer records currently stored in the registry.
+                        Click a record to edit it.
+                    </p>
+
+                    <div id="customer-list">
+                        <p>Loading...</p>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>A minimal customer registry system.</p>
+        </div>
+    </footer>
+</body>
+
+</html>
